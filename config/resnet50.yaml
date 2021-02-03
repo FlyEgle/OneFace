@@ -1,0 +1,36 @@
+MODEL:
+  WEIGHTS: "/data/remote/github_code/OneFace/models/weights/resnet50.pth"
+  MEAN: [123.675, 116.280, 103.530]
+  STD: [58.395, 57.120, 57.375]
+  BACKBONE:
+    NAME: "resnet50"
+  CLASS_WEIGHT: 2.0
+  GIOU_WEIGHT: 2.0
+  L1_WEIGHT: 5.0
+  ACTIVATION: "relu"
+LOSS:
+  FOCAL_LOSS:
+    ALPHA: 0.25
+    GAMMA: 2.0
+TRAIN:
+  NUM_CLASSES: 1
+  BATCH_SIZE: 8
+  BASE_LR: 0.0005
+  MOMENTUM: 0.9
+  MAX_EPOCHS: 200
+  WARM_EPOCHS: 10
+  WEIGHT_DECAY: 0.0001
+  OPTIMIZER: "ADAMW"
+  BACKBONE_MULTIPLIER: 1.0  # keep same with BASE_LR.
+SEED: 100
+INPUT:
+  SIZE: 416
+  CROP: False
+  FLIP: True
+  COLOR_JITTER: True
+  FORMAT: "RGB"
+DATALOADER:
+  NUM_WORKERS: 8
+CHEKCPOINTS:
+  CKPT_PATH: "/data/remote/output_ckpt_with_logs/oneface/ckpt"
+  LOGS_PATH: "/data/remote/output_ckpt_with_logs/oneface/logs"
